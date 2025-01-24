@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import os
 import env # noqa
+import requests
 
 # creating instance of Flask
 app = Flask(__name__)
@@ -15,12 +16,13 @@ def index():
     return render_template("index.html")
 
 
-# creatiing function to get weather data
+# creating function to get weather data
 def get_weather_data(city):
-    import requests
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}" # noqa
     response = requests.get(url)
     if response.status_code == 200:
         return response.json()
-    else:
-        return None
+    return None
+
+
+# TODO: create route for weather page
