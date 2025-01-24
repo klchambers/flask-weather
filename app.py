@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, flash
 import os
 import env # noqa
 import requests
@@ -6,8 +6,17 @@ import requests
 # creating instance of Flask
 app = Flask(__name__)
 
-# loading environment variable API_KEY from env.py
+if __name__ == "__main__":
+    # running debug TURN OFF in production
+    app.run(debug=True)
+# This is to ensure that the templates are reloaded when they are changed
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+
+# loading environment variables from env.py
 API_KEY = os.getenv('API_KEY')
+
+# setting secret key for flash messages
+app.secret_key = os.urandom(24)
 
 
 # defining route for index page
@@ -26,3 +35,13 @@ def get_weather_data(city):
 
 
 # TODO: create route for weather page
+@app.route("/weather/", methods=["GET"])
+def weather():
+    city = request.args.get('city')
+    data = get_weather_data(city)
+    if data:
+        flash("Loading weather data...")
+        return render_template("weather.html", city=city, weather=data)
+    else:
+        flash("City not found")
+        return render_template("weather.html", error="City not found")

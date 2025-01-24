@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h2>Weather in {{ city }}</h2>
+
+    {% if city %}
+        <p>Temperature: {{ temperature }}°C</p>
+        <p>Description: {{ description }}</p>
+    {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+    {% else %}
+        <p>Enter a city to get the weather.</p>
+    {% endif %}
+
+    <a href="/">Go Back</a>
+{% endblock %}
