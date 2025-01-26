@@ -34,14 +34,13 @@ def get_weather_data(city):
     return None
 
 
-# TODO: create route for weather page
 @app.route("/weather/", methods=["GET"])
 def weather():
     city = request.args.get('city')
     data = get_weather_data(city)
-    temperature_in_celsius = data['main']['temp'] = round(data['main']['temp'] - 273.15, 2) # noqa
     if data:
         flash("Loading weather data...")
+        temperature_in_celsius = data['main']['temp'] = round(data['main']['temp'] - 273.15, 2) # noqa
         filtered_data = {
             'City': data['name'],
             'Temperature': temperature_in_celsius,
@@ -50,5 +49,4 @@ def weather():
         }
         return render_template("weather.html", city=city, weather=filtered_data) # noqa
     else:
-        flash("City not found")
         return render_template("weather.html", error="City not found")
