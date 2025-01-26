@@ -38,15 +38,20 @@ def get_weather_data(city):
 def weather():
     city = request.args.get('city')
     data = get_weather_data(city)
+
     if data:
         flash("Loading weather data...")
-        temperature_in_celsius = data['main']['temp'] = round(data['main']['temp'] - 273.15, 2) # noqa
+        temperature_in_celsius = round(data['main']['temp'] - 273.15)
         filtered_data = {
             'City': data['name'],
+            'Country': data['sys']['country'],
             'Temperature': temperature_in_celsius,
             'Weather': data['weather'][0]['description'],
-            'Humidity': data['main']['humidity']
+            'Humidity': data['main']['humidity'],
         }
         return render_template("weather.html", city=city, weather=filtered_data) # noqa
     else:
-        return render_template("weather.html", error="City not found")
+        return render_template("weather.html",
+                               city=city,
+                               weather=None,
+                               error="City not found")

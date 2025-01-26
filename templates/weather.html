@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <h2>Weather in {{ city }}</h2>
+    <h2>Weather in {{ weather.City }}, {{ weather.Country }}</h2>
 
     {% if city %}
         <p>Temperature: {{ weather.Temperature }}°C</p>
@@ -11,6 +11,9 @@
     {% else %}
         <p>Enter a city to get the weather.</p>
     {% endif %}
-
+    
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
     <a href="/">Go Back</a>
 {% endblock %}
