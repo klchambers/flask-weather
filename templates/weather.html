@@ -4,8 +4,8 @@
     <h2>Weather in {{ city }}</h2>
 
     {% if city %}
-        <p>Temperature: {{ temperature }}°C</p>
-        <p>Description: {{ description }}</p>
+        <p>Temperature: {{ weather.Temperature }}°C</p>
+        <p>Description: {{ weather.Weather }}</p>
     {% elif error %}
         <p style="color: red;">{{ error }}</p>
     {% else %}
