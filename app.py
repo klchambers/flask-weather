@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request
 import os
 import env # noqa
 import requests
@@ -14,9 +14,6 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 # loading environment variables from env.py
 API_KEY = os.getenv('API_KEY')
-
-# setting secret key for flash messages
-app.secret_key = os.urandom(24)
 
 
 # defining route for index page
@@ -40,7 +37,6 @@ def weather():
     data = get_weather_data(city)
 
     if data:
-        flash("Loading weather data...")
         temperature_in_celsius = round(data['main']['temp'] - 273.15)
         filtered_data = {
             'City': data['name'],

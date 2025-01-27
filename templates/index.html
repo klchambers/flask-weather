@@ -31,11 +31,7 @@
       </div>
       <div class="col-md-6">
         <section class="content">
-          {% for message in get_flashed_messages() %}
-          <div class="flash">{{ message }}</div>
-          {% endfor %}
           {% block content %}
-
           <p class="display-6">Enter a city to get the weather. &#9728;</p>
           {% endblock %}
         </section>
