@@ -5,3 +5,7 @@ footer {
     right:0;
     height:75px;
 }
+
+#btn-switch {
+    cursor: pointer;
+}
