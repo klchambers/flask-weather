@@ -1,3 +1,11 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
 footer {
     position:fixed;
     bottom:0;
@@ -8,4 +16,12 @@ footer {
 
 #btn-switch {
     cursor: pointer;
+}
+
+/* media queries */
+@media (max-width: 768px) {
+    .homepage {
+        display: flex;
+        flex-direction: column-reverse
+    }
 }
