@@ -2,12 +2,17 @@ from flask import Flask, render_template, request
 import os
 import requests
 
+# Load environment variables from .env (only locally)
+if os.path.exists(".env"):
+    from dotenv import load_dotenv
+    load_dotenv()
+
 # creating instance of Flask
 app = Flask(__name__)
 
 if __name__ == "__main__":
     # running debug TURN OFF in production
-    app.run(debug=True)
+    app.run()
 # This is to ensure that the templates are reloaded when they are changed
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
