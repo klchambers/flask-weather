@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import os
-import env # noqa
 import requests
 
 # creating instance of Flask
