@@ -1,13 +1,11 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <h2>Weather in {{ weather.City }}, {{ weather.Country }}</h2>
+    <p class="display-5">{{ weather.City }}, {{ weather.Country }}</p>
 
     {% if city %}
-        <p>Temperature: {{ weather.Temperature }}°C</p>
-        <p>Description: {{ weather.Weather }}</p>
-    {% elif error %}
-        <p style="color: red;">{{ error }}</p>
+        <p class="display-5">{{ weather.Temperature }}°C</p>
+        <p class="display-6" id="weather-description">{{ weather.Weather|title }} <span id="weather-icon"></span></p>
     {% else %}
         <p>Enter a city to get the weather.</p>
     {% endif %}
@@ -16,4 +14,26 @@
         <div class="alert alert-danger">{{ error }}</div>
     {% endif %}
     <a href="/">Go Back</a>
+
+    <script>
+        var weather_description = document.getElementById('weather-description');
+        var weather_icon = document.getElementById('weather-icon');
+
+        // Convert description to lowercase for comparison
+        var weather_text = weather_description.innerHTML.toLowerCase();
+
+        if (weather_text.includes('few cloud')) {
+            weather_icon.innerHTML = '&#9925;';
+        } else if (weather_text.includes('clouds')) {
+            weather_icon.innerHTML = '&#9729;';
+        } else if (weather_text.includes('rain')) {
+            weather_icon.innerHTML = '&#127783;';
+        } else if (weather_text.includes('sun')) {
+            weather_icon.innerHTML = '&#9728;';
+        } else if (weather_text.includes('clear')) {
+            weather_icon.innerHTML = '&#9728;';
+        } else {
+            weather_icon.className = 'fa-solid fa-question'; // Default icon if no match
+        }
+    </script>
 {% endblock %}
