@@ -16,7 +16,7 @@ footer {
 
 .logo {
     text-decoration: none;
-    color: #000;
+    color: inherit;
     cursor: pointer;
 }
 
