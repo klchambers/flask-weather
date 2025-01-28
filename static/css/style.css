@@ -14,6 +14,12 @@ footer {
     height:75px;
 }
 
+.logo {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
 #btn-switch {
     cursor: pointer;
 }
