@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 if __name__ == "__main__":
     # running debug TURN OFF in production
-    app.run(debug=True)
+    app.run()
 # This is to ensure that the templates are reloaded when they are changed
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
